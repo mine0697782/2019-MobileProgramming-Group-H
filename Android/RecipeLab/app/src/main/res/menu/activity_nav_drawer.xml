@@ -10,9 +10,24 @@
                 android:icon="@drawable/ic_menu_home_black_24dp"
                 android:title="메인화면" />
             <item
-                android:id="@+id/nav_research_list"
+                android:id="@+id/nav_research_result_list"
                 android:icon="@drawable/ic_menu_research_list_24dp"
                 android:title="연구 완료 목록" />
+        </menu>
+    </item>
+
+
+    <item android:title="개발용 액티비티 이동 버튼">
+        <menu>
+            <item
+                android:id="@+id/nav_add_recipe"
+                android:title="AddRecipeActivity(개발용)" />
+            <item
+                android:id="@+id/nav_researching_list"
+                android:title="ResearchingListActivity(개발용)" />
+            <item
+                android:id="@+id/nav_add_research"
+                android:title="AddResearchActivity(개발용)" />
         </menu>
     </item>
 

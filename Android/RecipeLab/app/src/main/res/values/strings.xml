@@ -14,4 +14,10 @@
     <string name="menu_tools">Tools</string>
     <string name="menu_share">Share</string>
     <string name="menu_send">Send</string>
+
+    <string name="label_main">MainActivity</string>
+    <string name="label_add_recipe">AddRecipeActivity</string>
+    <string name="label_researching_list">ResearchingListActivity</string>
+    <string name="label_add_research">AddResearchActivity</string>
+    <string name="label_research_result">ResearchResultActivity</string>
 </resources>

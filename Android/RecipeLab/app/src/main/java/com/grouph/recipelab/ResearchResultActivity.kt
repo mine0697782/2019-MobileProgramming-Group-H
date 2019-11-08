@@ -3,7 +3,7 @@ package com.grouph.recipelab
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 
-class ResearchResultActicity : AppCompatActivity() {
+class ResearchResultActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
