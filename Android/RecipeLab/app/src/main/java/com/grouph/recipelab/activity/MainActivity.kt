@@ -11,15 +11,26 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.PagerSnapHelper
+import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.navigation.NavigationView
 import com.grouph.recipelab.R
+import com.grouph.recipelab.adapter.ResearchingListAdapter
+import kotlinx.android.synthetic.main.content_main.*
 import kotlinx.android.synthetic.main.toolbar_main.*
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener,
     View.OnClickListener {
 
+    private val TAG = "MainActivity"
+
     var testData1: ArrayList<String> = arrayListOf("연구중인음식1", "진행중2", "테스트용데이터3")
     var testData2: ArrayList<String> = arrayListOf("완료된 레시피1", "완료된 레시피2", "완료됨3")
+
+    lateinit var rvTop: RecyclerView
+    lateinit var adapterTop: ResearchingListAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,6 +45,18 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         val navView: NavigationView = findViewById(R.id.nav_view)
         // 네비게이션 메뉴의 아이템을 클릭했을때 반응하기 위한 이벤트 리스너 설정
         navView.setNavigationItemSelectedListener(this@MainActivity)
+
+        adapterTop = ResearchingListAdapter(testData1, this, R.layout.item_research_list_card)
+        adapterTop.notifyDataSetChanged()
+
+        rvTop = rv_list_researching
+        rvTop.apply {
+            adapter = adapterTop
+            layoutManager = LinearLayoutManager(context ,LinearLayoutManager.HORIZONTAL, false)
+            addItemDecoration(DividerItemDecoration(context , DividerItemDecoration.VERTICAL))
+        }
+        val snapHelper = PagerSnapHelper()
+        snapHelper.attachToRecyclerView(rvTop)
     }
 
     override fun onClick(v: View?) {
