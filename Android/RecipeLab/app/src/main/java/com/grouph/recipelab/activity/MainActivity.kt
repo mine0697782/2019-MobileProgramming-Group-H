@@ -2,21 +2,24 @@
 //  작성자 : 정민재
 //
 
-package com.grouph.recipelab
+package com.grouph.recipelab.activity
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
-import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import com.google.android.material.navigation.NavigationView
+import com.grouph.recipelab.R
 import kotlinx.android.synthetic.main.toolbar_main.*
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener,
     View.OnClickListener {
+
+    var testData1: ArrayList<String> = arrayListOf("연구중인음식1", "진행중2", "테스트용데이터3")
+    var testData2: ArrayList<String> = arrayListOf("완료된 레시피1", "완료된 레시피2", "완료됨3")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,16 +55,16 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
             }
             R.id.nav_research_result_list -> {
-                intent = Intent(this,ResearchResultActivity::class.java)
+                intent = Intent(this, ResearchResultActivity::class.java)
             }
             R.id.nav_add_recipe -> {
-                intent = Intent(this,AddRecipeActivity::class.java)
+                intent = Intent(this, AddRecipeActivity::class.java)
             }
             R.id.nav_add_research -> {
-                intent = Intent(this,AddResearchActivity::class.java)
+                intent = Intent(this, AddResearchActivity::class.java)
             }
             R.id.nav_researching_list -> {
-                intent = Intent(this,ResearchingListActivity::class.java)
+                intent = Intent(this, ResearchingListActivity::class.java)
             }
         }
 
