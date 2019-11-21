@@ -1,3 +1,7 @@
+//
+//  작성자 : 정민재
+//
+
 package com.grouph.recipelab.adapter
 
 import android.content.Context

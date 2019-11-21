@@ -46,15 +46,18 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         // 네비게이션 메뉴의 아이템을 클릭했을때 반응하기 위한 이벤트 리스너 설정
         navView.setNavigationItemSelectedListener(this@MainActivity)
 
+        // 리사이클러뷰에 데이터를 바인드해주기 위해 필요한 어댑터 생성
         adapterTop = ResearchingListAdapter(testData1, this, R.layout.item_research_list_card)
         adapterTop.notifyDataSetChanged()
 
+        // 리사이클러뷰에 커스텀 어댑터를 설정하고, 좌우로 움직이도록 설정, 레이아웃간 구분선 추가
         rvTop = rv_list_researching
         rvTop.apply {
             adapter = adapterTop
             layoutManager = LinearLayoutManager(context ,LinearLayoutManager.HORIZONTAL, false)
             addItemDecoration(DividerItemDecoration(context , DividerItemDecoration.VERTICAL))
         }
+        // 레이아웃이 화면 경계에 딱 맞춰지도록 하는 라이브러리 추가
         val snapHelper = PagerSnapHelper()
         snapHelper.attachToRecyclerView(rvTop)
     }
