@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    tools:context=".MainActivity">
+    tools:context=".activity.MainActivity">
 
     <include layout="@layout/toolbar_main" />
 
@@ -20,29 +20,45 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:orientation="vertical">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:background="#DDDDDD"
                     android:paddingStart="20dp"
                     android:paddingTop="10dp"
                     android:paddingBottom="10dp"
                     android:text="연구 진행중 리스트"
                     android:textSize="20sp" />
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rv_list_researching"
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:background="#FFaa77">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rv_list_researching"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                    <me.relex.circleindicator.CircleIndicator2
+                        android:id="@+id/indicator_main"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp" />
+
+                </LinearLayout>
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
+                    android:background="#DDDDDD"
                     android:paddingStart="20dp"
-                    android:paddingTop="15dp"
-                    android:paddingBottom="15dp"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
                     android:text="연구 완료 리스트"
                     android:textAlignment="textStart"
                     android:textSize="20sp" />
@@ -51,7 +67,8 @@
                     android:id="@+id/rv_list_research_finished"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:scrollbars="none" />
+                    android:layout_marginStart="30dp"
+                    android:layout_marginEnd="30dp" />
             </LinearLayout>
         </ScrollView>
     </LinearLayout>

@@ -11,19 +11,19 @@
         android:theme="@style/AppTheme.NoActionBar">
 
         <activity
-            android:name=".ResearchResultActivity"
+            android:name=".activity.ResearchResultActivity"
             android:label="@string/label_research_result" />
         <activity
-            android:name=".AddResearchActivity"
+            android:name=".activity.AddResearchActivity"
             android:label="@string/label_add_research" />
         <activity
-            android:name=".ResearchingListActivity"
+            android:name=".activity.ResearchingListActivity"
             android:label="@string/label_researching_list" />
         <activity
-            android:name=".AddRecipeActivity"
+            android:name=".activity.AddRecipeActivity"
             android:label="@string/label_add_recipe" />
         <activity
-            android:name=".MainActivity"
+            android:name=".activity.MainActivity"
             android:label="@string/label_main">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
