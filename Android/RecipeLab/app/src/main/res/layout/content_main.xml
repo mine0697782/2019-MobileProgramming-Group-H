@@ -52,7 +52,9 @@
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rv_list_research_finished"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginEnd="30dp"/>
             </LinearLayout>
         </ScrollView>
     </LinearLayout>
