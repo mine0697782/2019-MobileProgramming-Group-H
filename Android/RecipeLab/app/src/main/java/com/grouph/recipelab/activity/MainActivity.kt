@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.PagerSnapHelper
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.navigation.NavigationView
 import com.grouph.recipelab.R
 import com.grouph.recipelab.adapter.ResearchingListAdapter
@@ -69,6 +70,12 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             e.printStackTrace()
         }
 
+        val floatingBtn: FloatingActionButton = fab
+        floatingBtn.setOnClickListener {
+            adapterTop.data.add("추가된 데이터")
+            adapterTop.notifyDataSetChanged()
+        }
+
         /** 리사이클러뷰에 데이터를 바인드해주기 위해 필요한 어댑터 생성 */
         adapterTop = ResearchingListAdapter(testData1, this, R.layout.item_research_list_card)
         adapterTop.notifyDataSetChanged()
@@ -88,6 +95,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         /** 한 아이템이 페이지를 가득 채우는 리사이클러뷰에 아이템의 갯수와 현재 아이템의 인덱스를 표시해주는 라이브러리 */
         val indicator: CircleIndicator2 = indicator_main
         indicator.attachToRecyclerView(rvTop, snapHelper)
+        /** 데이터의 변화를 감지해서 점의 갯수를 실시간으로 바꿔줌 */
+        adapterTop.registerAdapterDataObserver(indicator.getAdapterDataObserver())
 
         /** 상하로 움직이는 리사이클러뷰. */
         rvBottom = rv_list_research_finished
