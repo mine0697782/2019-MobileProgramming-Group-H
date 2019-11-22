@@ -60,7 +60,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         rvTop.apply {
             adapter = adapterTop
             layoutManager = LinearLayoutManager(context ,LinearLayoutManager.HORIZONTAL, false)
-            addItemDecoration(DividerItemDecoration(context , DividerItemDecoration.HORIZONTAL))
+//            addItemDecoration(DividerItemDecoration(context , DividerItemDecoration.HORIZONTAL))
         }
         // 상단의 카드 레이아웃이 화면 경계에 딱 맞춰지도록 하는 라이브러리 추가
         val snapHelper = PagerSnapHelper()
