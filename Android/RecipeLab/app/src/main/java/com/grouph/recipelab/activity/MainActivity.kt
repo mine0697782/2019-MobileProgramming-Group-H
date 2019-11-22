@@ -23,6 +23,7 @@ import com.grouph.recipelab.adapter.ResearchingListAdapter
 import com.grouph.recipelab.helper.MySQLIteOpenHelper
 import kotlinx.android.synthetic.main.content_main.*
 import kotlinx.android.synthetic.main.toolbar_main.*
+import me.relex.circleindicator.CircleIndicator2
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener,
     View.OnClickListener {
@@ -79,6 +80,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         // 상단의 카드 레이아웃이 화면 경계에 딱 맞춰지도록 하는 라이브러리 추가
         val snapHelper = PagerSnapHelper()
         snapHelper.attachToRecyclerView(rvTop)
+
+        val indicator: CircleIndicator2 = indicator_main
+        indicator.attachToRecyclerView(rvTop, snapHelper)
 
         rvBottom = rv_list_research_finished
         rvBottom.apply {
