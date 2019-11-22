@@ -1,6 +1,6 @@
-//
-//  작성자 : 정민재
-//
+/**
+ *  작성자 : 정민재
+ */
 
 package com.grouph.recipelab.adapter
 

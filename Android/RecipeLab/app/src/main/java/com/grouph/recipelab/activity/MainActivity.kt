@@ -1,10 +1,12 @@
-//
-//  작성자 : 정민재
-//
+/**
+ *  작성자 : 정민재
+ */
 
 package com.grouph.recipelab.activity
 
 import android.content.Intent
+import android.database.sqlite.SQLiteDatabase
+import android.database.sqlite.SQLiteException
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
@@ -18,6 +20,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.navigation.NavigationView
 import com.grouph.recipelab.R
 import com.grouph.recipelab.adapter.ResearchingListAdapter
+import com.grouph.recipelab.helper.MySQLIteOpenHelper
 import kotlinx.android.synthetic.main.content_main.*
 import kotlinx.android.synthetic.main.toolbar_main.*
 
@@ -25,6 +28,11 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     View.OnClickListener {
 
     private val TAG = "MainActivity"
+
+    private lateinit var helper: MySQLIteOpenHelper
+    private lateinit var db: SQLiteDatabase
+    val dbName = "file.db"
+    var dbVersion = 1
 
     var testData1: ArrayList<String> = arrayListOf("연구중인음식1", "진행중2", "테스트용데이터3")
     var testData2: ArrayList<String> = arrayListOf(
@@ -43,11 +51,17 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         // 타이틀을 설정해주기 위해 임시로 작성한 코드
         myToolbar.title = "MainActivity"
         setSupportActionBar(myToolbar)
-
         // 좌측에서 끌어서 사용하는 네비게이션 뷰를 초기화하는 부분
         val navView: NavigationView = findViewById(R.id.nav_view)
         // 네비게이션 메뉴의 아이템을 클릭했을때 반응하기 위한 이벤트 리스너 설정
         navView.setNavigationItemSelectedListener(this@MainActivity)
+
+        helper = MySQLIteOpenHelper(this, dbName,null, dbVersion)
+        try {
+            db = helper.readableDatabase
+        } catch (e: SQLiteException) {
+            e.printStackTrace()
+        }
 
         // 리사이클러뷰에 데이터를 바인드해주기 위해 필요한 어댑터 생성
         adapterTop = ResearchingListAdapter(testData1, this, R.layout.item_research_list_card)
