@@ -25,6 +25,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:background="#DDDDDD"
                     android:paddingStart="20dp"
                     android:paddingTop="10dp"
                     android:paddingBottom="10dp"
@@ -34,15 +35,16 @@
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rv_list_researching"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
+                    android:background="#DDDDDD"
                     android:paddingStart="20dp"
-                    android:paddingTop="15dp"
-                    android:paddingBottom="15dp"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
                     android:text="연구 완료 리스트"
                     android:textAlignment="textStart"
                     android:textSize="20sp" />
@@ -50,8 +52,7 @@
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rv_list_research_finished"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:scrollbars="none" />
+                    android:layout_height="wrap_content" />
             </LinearLayout>
         </ScrollView>
     </LinearLayout>

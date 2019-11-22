@@ -3,7 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="20dp"
     android:orientation="vertical">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -17,9 +16,19 @@
             android:id="@+id/text_on_going"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingStart="15dp"
+            android:paddingStart="17dp"
             android:text="진행중"
             android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/text_num_research"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="20dp"
+            android:paddingEnd="15dp"
+            android:text="N개"
+            android:textStyle="bold"
+            app:layout_constraintRight_toRightOf="parent" />
 
         <TextView
             android:id="@+id/text_research_coffee_name"
