@@ -1,8 +1,11 @@
 package com.grouph.recipelab.model
 
+import java.text.SimpleDateFormat
+import java.util.*
+
 class Research(
-    var researchNo: Int,
     var recipeNo: Int,
-    var date: String,
-    var score: Float
+    var score: Float = 0f,
+    var date: String = SimpleDateFormat("yyyy-MM-dd").format(Date(System.currentTimeMillis())),
+    var researchNo: Int = -1
 ) {}
