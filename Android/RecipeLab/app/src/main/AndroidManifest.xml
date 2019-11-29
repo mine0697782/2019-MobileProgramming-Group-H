@@ -22,6 +22,7 @@
         <activity
             android:name=".activity.AddRecipeActivity"
             android:label="@string/label_add_recipe" />
+        <activity android:name=".activity.JAddResearchActivity" android:label="JAddResearhActivity"/>
         <activity
             android:name=".activity.MainActivity"
             android:label="@string/label_main">
