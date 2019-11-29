@@ -11,6 +11,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0edd4504-86ea-41bf-a612-9493017f86a3" name="Default Changelist" comment="">
+
       <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_annotation_annotation_1_1_0_jar.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__me_relex_circleindicator_2_1_4_aar.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/app/src/main/java/com/grouph/recipelab/activity/JAddResearchActivity.java" afterDir="false" />
@@ -23,6 +24,7 @@
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/grouph/recipelab/activity/AddResearchActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/grouph/recipelab/activity/AddResearchActivity.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_add_research.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_add_research.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/local.properties" beforeDir="false" afterPath="$PROJECT_DIR$/local.properties" afterDir="false" />
+
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -53,6 +55,7 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="19">
               <caret line="30" column="28" selection-start-line="30" selection-start-column="28" selection-end-line="30" selection-end-column="28" />
+=======
               <folding>
                 <element signature="e#0#21#0" expanded="true" />
               </folding>
@@ -63,6 +66,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/grouph/recipelab/activity/AddResearchActivity.kt">
           <provider selected="true" editor-type-id="text-editor">
+
             <state relative-caret-position="206">
               <caret line="29" column="52" selection-start-line="29" selection-start-column="52" selection-end-line="29" selection-end-column="52" />
               <folding>
@@ -73,6 +77,7 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+
         <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/androidx.appcompat/appcompat/1.0.2/e38e7c85994112b70d4548176128c72b8477c110/appcompat-1.0.2-sources.jar!/androidx/appcompat/widget/AppCompatTextView.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="213">
@@ -186,11 +191,8 @@
         <option value="$PROJECT_DIR$/app/src/main/res/layout/item_research_list_card.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/item_research_list.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/grouph/recipelab/ui/CircleIndicator.kt" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/grouph/recipelab/adapter/ResearchingListAdapter.kt" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/grouph/recipelab/helper/MySQLIteOpenHelper.kt" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/grouph/recipelab/ui/LinePagerIndicatorDecoration.java" />
         <option value="$PROJECT_DIR$/app/build.gradle" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/grouph/recipelab/activity/MainActivity.kt" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/content_main.xml" />
         <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/grouph/recipelab/activity/JAddResearchActivity.java" />
@@ -601,6 +603,7 @@
       </provider>
     </entry>
     <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/androidx.appcompat/appcompat/1.0.2/e38e7c85994112b70d4548176128c72b8477c110/appcompat-1.0.2-sources.jar!/androidx/appcompat/app/AppCompatViewInflater.java">
+
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="213">
           <caret line="392" selection-start-line="392" selection-end-line="392" />
@@ -673,9 +676,11 @@
           <caret line="29" column="52" selection-start-line="29" selection-start-column="52" selection-end-line="29" selection-end-column="52" />
           <folding>
             <element signature="e#39#687#0" expanded="true" />
+=======
           </folding>
         </state>
       </provider>
+      <provider editor-type-id="android-designer2" />
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_add_research.xml">
       <provider selected="true" editor-type-id="android-designer2" />
@@ -710,6 +715,7 @@
           <caret line="20" column="51" selection-start-line="20" selection-start-column="51" selection-end-line="20" selection-end-column="51" />
         </state>
       </provider>
+=======
     </entry>
   </component>
 </project>
