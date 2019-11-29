@@ -38,16 +38,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     val dbName = "file.db"
     var dbVersion = 1
 
-
-    val testData = arrayListOf(
-        Recipe("테스트1", 3, "원두", "물", "시간", 3),
-        Recipe("테스트2", 3, "원두", "물", "시간", 2),
-        Recipe("테스트3", 3, "원두", "물", "시간", 1),
-        Recipe("테스트4", 3, "원두", "물", "시간")
-    )
-//    var testData1: ArrayList<String> = arrayListOf("연구중인음식1", "진행중2", "테스트용데이터3")
-//    var testData2: ArrayList<String> = arrayListOf(
-//        "완료된 레시피1", "완료된 레시피2", "완료됨3", "스크롤테스트1", "스크롤테스트2")
+    val dataTop = arrayListOf<Recipe>()
+    val dataBottom = arrayListOf<Recipe>()
 
     lateinit var rvTop: RecyclerView
     lateinit var rvBottom: RecyclerView
@@ -74,6 +66,25 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         helper = MySQLIteOpenHelper(this, dbName,null, dbVersion)
         try {
             db = helper.readableDatabase
+            var cursor = db.rawQuery("select * from recipeTable where isFInished = 0", null)
+            while (cursor.moveToNext()) {
+                cursor.apply {
+                    val data = Recipe(getString(3), getInt(1),
+                        getString(6), getString(7), getString(8),
+                        getInt(2))
+                    dataTop.add(data)
+                }
+            }
+            cursor = db.rawQuery("select * from recipeTable where isFInished = 1", null)
+            while (cursor.moveToNext()) {
+                cursor.apply {
+                    val data = Recipe(getString(3), getInt(1),
+                        getString(6), getString(7), getString(8),
+                        getInt(2))
+                    dataBottom.add(data)
+                }
+            }
+
         } catch (e: SQLiteException) {
             e.printStackTrace()
         }
@@ -85,9 +96,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         }
 
         /** 리사이클러뷰에 데이터를 바인드해주기 위해 필요한 어댑터 생성 */
-        adapterTop = ResearchingListAdapter(testData, this, R.layout.item_research_list_card)
+        adapterTop = ResearchingListAdapter(dataTop, this, R.layout.item_research_list_card)
         adapterTop.notifyDataSetChanged()
-        adapterBottom = ResearchingListAdapter(testData, this, R.layout.item_research_list)
+        adapterBottom = ResearchingListAdapter(dataBottom, this, R.layout.item_research_list)
         adapterBottom.notifyDataSetChanged()
 
         /** 리사이클러뷰에 커스텀 어댑터를 설정하고, 좌우로 움직이도록 설정 */

@@ -29,7 +29,11 @@ class MySQLIteOpenHelper(
         Recipe("테스트1", 3, "원두", "물", "시간"),
         Recipe("테스트2", 3, "원두", "물", "시간"),
         Recipe("테스트3", 3, "원두", "물", "시간"),
-        Recipe("테스트4", 3, "원두", "물", "시간"))
+        Recipe("테스트4", 3, "원두", "물", "시간"),
+        Recipe("테스트5", 3, "원두", "물", "시간", isFinished = true),
+        Recipe("테스트6", 3, "원두", "물", "시간", isFinished = true),
+        Recipe("테스트7", 3, "원두", "물", "시간", isFinished = true),
+        Recipe("테스트8", 3, "원두", "물", "시간", isFinished = true))
     val d2 = arrayListOf(Research(1), Research(1), Research(1))
     val d3 = arrayListOf(
         Element(1, 1, 1, "원두", 10, "g"),
