@@ -11,9 +11,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
+import com.grouph.recipelab.model.Recipe
 import kotlinx.android.synthetic.main.item_research_list_card.view.*
 
-class ResearchingListAdapter(val data: ArrayList<String>, val context: Context, val layout: Int)
+class ResearchingListAdapter(val data: ArrayList<Recipe>, val context: Context, val layout: Int)
     : RecyclerView.Adapter<ResearchingListAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -29,7 +30,7 @@ class ResearchingListAdapter(val data: ArrayList<String>, val context: Context, 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = data[position]
         val listener = View.OnClickListener {
-            Toast.makeText(context, item+" clicked", Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, item.recipeName+" clicked", Toast.LENGTH_SHORT).show()
         }
         holder.apply {
             bind(item, listener)
@@ -38,9 +39,10 @@ class ResearchingListAdapter(val data: ArrayList<String>, val context: Context, 
 
     class ViewHolder(v: View) : RecyclerView.ViewHolder(v) {
         val view = v
-        fun bind(item: String, listener: View.OnClickListener) {
+        fun bind(item: Recipe, listener: View.OnClickListener) {
             view.setOnClickListener(listener)
-            view.text_research_coffee_name.text = item
+            view.text_research_coffee_name.text = item.recipeName
+            view.text_num_research.text = item.resNum.toString()
         }
     }
 }

@@ -23,6 +23,7 @@ import com.google.android.material.navigation.NavigationView
 import com.grouph.recipelab.R
 import com.grouph.recipelab.adapter.ResearchingListAdapter
 import com.grouph.recipelab.helper.MySQLIteOpenHelper
+import com.grouph.recipelab.model.Recipe
 import kotlinx.android.synthetic.main.content_main.*
 import kotlinx.android.synthetic.main.toolbar_main.*
 import me.relex.circleindicator.CircleIndicator2
@@ -37,9 +38,16 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     val dbName = "file.db"
     var dbVersion = 1
 
-    var testData1: ArrayList<String> = arrayListOf("연구중인음식1", "진행중2", "테스트용데이터3")
-    var testData2: ArrayList<String> = arrayListOf(
-        "완료된 레시피1", "완료된 레시피2", "완료됨3", "스크롤테스트1", "스크롤테스트2")
+
+    val testData = arrayListOf(
+        Recipe("테스트1", 3, "원두", "물", "시간", 3),
+        Recipe("테스트2", 3, "원두", "물", "시간", 2),
+        Recipe("테스트3", 3, "원두", "물", "시간", 1),
+        Recipe("테스트4", 3, "원두", "물", "시간")
+    )
+//    var testData1: ArrayList<String> = arrayListOf("연구중인음식1", "진행중2", "테스트용데이터3")
+//    var testData2: ArrayList<String> = arrayListOf(
+//        "완료된 레시피1", "완료된 레시피2", "완료됨3", "스크롤테스트1", "스크롤테스트2")
 
     lateinit var rvTop: RecyclerView
     lateinit var rvBottom: RecyclerView
@@ -72,14 +80,14 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         val floatingBtn: FloatingActionButton = fab
         floatingBtn.setOnClickListener {
-            adapterTop.data.add("추가된 데이터")
+            adapterTop.data.add(Recipe("추가된 데이터",0, "1","2","3"))
             adapterTop.notifyDataSetChanged()
         }
 
         /** 리사이클러뷰에 데이터를 바인드해주기 위해 필요한 어댑터 생성 */
-        adapterTop = ResearchingListAdapter(testData1, this, R.layout.item_research_list_card)
+        adapterTop = ResearchingListAdapter(testData, this, R.layout.item_research_list_card)
         adapterTop.notifyDataSetChanged()
-        adapterBottom = ResearchingListAdapter(testData2, this, R.layout.item_research_list)
+        adapterBottom = ResearchingListAdapter(testData, this, R.layout.item_research_list)
         adapterBottom.notifyDataSetChanged()
 
         /** 리사이클러뷰에 커스텀 어댑터를 설정하고, 좌우로 움직이도록 설정 */
