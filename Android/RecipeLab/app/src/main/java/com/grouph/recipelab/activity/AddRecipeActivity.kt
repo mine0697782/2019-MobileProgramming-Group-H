@@ -1,3 +1,8 @@
+/**
+ *  작성자 : 정민재
+ *  @author jmj
+ */
+
 package com.grouph.recipelab.activity
 
 import android.content.Intent
@@ -30,10 +35,6 @@ class AddRecipeActivity : AppCompatActivity() {
             try {
                 val db = helper.writableDatabase
                 helper.insert(db, Recipe(editName.text.toString()))
-                    /*rawQuery("select * from recipeTable where isFInished = 0", null)
-
-                cursor = db.rawQuery("select * from recipeTable where isFInished = 1", null)*/
-
                 db.close()
             } catch (e: SQLiteException) {
                 e.printStackTrace()
