@@ -64,30 +64,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         /** 데이터베이스를 사용하기 위한 헬퍼 */
         helper = MySQLIteOpenHelper(this, dbName,null, dbVersion)
-        try {
-            db = helper.readableDatabase
-            var cursor = db.rawQuery("select * from recipeTable where isFInished = 0", null)
-            while (cursor.moveToNext()) {
-                cursor.apply {
-                    val data = Recipe(getString(3), getInt(1),
-                        getString(6), getString(7), getString(8),
-                        getInt(2))
-                    dataTop.add(data)
-                }
-            }
-            cursor = db.rawQuery("select * from recipeTable where isFInished = 1", null)
-            while (cursor.moveToNext()) {
-                cursor.apply {
-                    val data = Recipe(getString(3), getInt(1),
-                        getString(6), getString(7), getString(8),
-                        getInt(2))
-                    dataBottom.add(data)
-                }
-            }
-
-        } catch (e: SQLiteException) {
-            e.printStackTrace()
-        }
+        getDataFromDB()
 
         val floatingBtn: FloatingActionButton = fab
         floatingBtn.setOnClickListener {
@@ -130,7 +107,38 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         }
     }
 
+    fun getDataFromDB() {
+        try {
+            db = helper.readableDatabase
+            var cursor = db.rawQuery("select * from recipeTable where isFInished = 0", null)
+            while (cursor.moveToNext()) {
+                cursor.apply {
+                    val data = Recipe(getString(3), getInt(1),
+                        getString(6), getString(7), getString(8),
+                        getInt(2))
+                    dataTop.add(data)
+                }
+            }
+            cursor = db.rawQuery("select * from recipeTable where isFInished = 1", null)
+            while (cursor.moveToNext()) {
+                cursor.apply {
+                    val data = Recipe(getString(3), getInt(1),
+                        getString(6), getString(7), getString(8),
+                        getInt(2))
+                    dataBottom.add(data)
+                }
+            }
+            db.close()
+        } catch (e: SQLiteException) {
+            e.printStackTrace()
+        }
+    }
+
     fun refreshAdapter() {
+//        Toast.makeText(this, "refresh", Toast.LENGTH_SHORT).show()
+        adapterTop.data.clear()
+        adapterBottom.data.clear()
+        getDataFromDB()
         adapterTop.notifyDataSetChanged()
         adapterBottom.notifyDataSetChanged()
     }
