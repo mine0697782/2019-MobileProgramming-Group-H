@@ -35,8 +35,15 @@ class ResearchingListAdapter(val data: ArrayList<Recipe>, val context: Activity,
         val item = data[position]
         val listener = View.OnClickListener {
 //            Toast.makeText(context, item.recipeName+" clicked", Toast.LENGTH_SHORT).show()
-//            context.startActivity(Intent(context, ResearchingListActivity::class.java))
-            context.startActivityForResult(Intent(context, /*ResearchingListActivity*/TestActivity::class.java), 0)
+            val intent = Intent(context, ResearchingListActivity::class.java)
+            intent.putExtra("recipeName", item.recipeName)
+            intent.putExtra("recipeNo", item.recipeNo)
+            intent.putExtra("date", item.currentDate)
+            intent.putExtra("resNum", item.resNum)
+            intent.putExtra("keyName1", item.keyName1)
+            intent.putExtra("keyName2", item.keyName2)
+            intent.putExtra("keyName3", item.keyName3)
+            context.startActivityForResult(intent, 0)
         }
         holder.apply {
             bind(item, listener)
