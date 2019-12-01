@@ -6,20 +6,17 @@
 package com.grouph.recipelab.adapter
 
 import android.app.Activity
-import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.grouph.recipelab.activity.ResearchingListActivity
-import com.grouph.recipelab.activity.TestActivity
 import com.grouph.recipelab.model.Recipe
 import kotlinx.android.synthetic.main.item_research_list_card.view.*
 
-class ResearchingListAdapter(val data: ArrayList<Recipe>, val context: Activity, val layout: Int)
-    : RecyclerView.Adapter<ResearchingListAdapter.ViewHolder>() {
+class RecipeListAdapter(val data: ArrayList<Recipe>, val context: Activity, val layout: Int)
+    : RecyclerView.Adapter<RecipeListAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(layout, parent, false)
@@ -56,6 +53,7 @@ class ResearchingListAdapter(val data: ArrayList<Recipe>, val context: Activity,
             view.setOnClickListener(listener)
             view.text_research_coffee_name.text = item.recipeName
             view.text_num_research.text = item.resNum.toString()
+            view.text_research_coffee_date.text = item.currentDate
         }
     }
 }

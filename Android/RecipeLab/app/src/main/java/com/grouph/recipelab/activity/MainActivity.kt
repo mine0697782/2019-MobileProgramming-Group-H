@@ -21,7 +21,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.navigation.NavigationView
 import com.grouph.recipelab.R
-import com.grouph.recipelab.adapter.ResearchingListAdapter
+import com.grouph.recipelab.adapter.RecipeListAdapter
 import com.grouph.recipelab.helper.MySQLIteOpenHelper
 import com.grouph.recipelab.model.Recipe
 import kotlinx.android.synthetic.main.content_main.*
@@ -43,8 +43,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     lateinit var rvTop: RecyclerView
     lateinit var rvBottom: RecyclerView
-    lateinit var adapterTop: ResearchingListAdapter
-    lateinit var adapterBottom: ResearchingListAdapter
+    lateinit var adapterTop: RecipeListAdapter
+    lateinit var adapterBottom: RecipeListAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -74,9 +74,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         }
 
         /** 리사이클러뷰에 데이터를 바인드해주기 위해 필요한 어댑터 생성 */
-        adapterTop = ResearchingListAdapter(dataTop, this, R.layout.item_research_list_card)
+        adapterTop = RecipeListAdapter(dataTop, this, R.layout.item_research_list_card)
         adapterTop.notifyDataSetChanged()
-        adapterBottom = ResearchingListAdapter(dataBottom, this, R.layout.item_research_list)
+        adapterBottom = RecipeListAdapter(dataBottom, this, R.layout.item_research_list)
         adapterBottom.notifyDataSetChanged()
 
         /** 리사이클러뷰에 커스텀 어댑터를 설정하고, 좌우로 움직이도록 설정 */
