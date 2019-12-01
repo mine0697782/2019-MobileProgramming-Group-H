@@ -91,8 +91,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         val floatingBtn: FloatingActionButton = fab
         floatingBtn.setOnClickListener {
-            adapterTop.data.add(Recipe("추가된 데이터",0, "1","2","3"))
-            adapterTop.notifyDataSetChanged()
+//            adapterTop.data.add(Recipe("추가된 데이터",0, "1","2","3"))
+//            adapterTop.notifyDataSetChanged()
+            startActivityForResult(Intent(this, AddRecipeActivity::class.java), 0)
         }
 
         /** 리사이클러뷰에 데이터를 바인드해주기 위해 필요한 어댑터 생성 */
@@ -129,9 +130,15 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         }
     }
 
+    fun refreshAdapter() {
+        adapterTop.notifyDataSetChanged()
+        adapterBottom.notifyDataSetChanged()
+    }
+
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if (resultCode == RESULT_OK) {
             Toast.makeText(this,"result Ok", Toast.LENGTH_SHORT).show()
+            refreshAdapter()
         }
     }
 

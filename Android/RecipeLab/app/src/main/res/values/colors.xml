@@ -11,4 +11,6 @@
     <color name="colorToolbarPrimary">#E3BE49</color>
     <color name="colorToolbarPrimaryLight">#F4E5B0</color>
     <color name="colorToolbarAccent">#E3BE49</color>
+
+    <color name="colorTransparent">#FFFFFF</color>
 </resources>
