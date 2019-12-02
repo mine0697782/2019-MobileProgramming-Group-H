@@ -22,8 +22,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.grouph.recipelab.R
 import com.grouph.recipelab.adapter.AddResearchAdapter
-import com.grouph.recipelab.adapter.ResearchingListAdapter
 import com.grouph.recipelab.helper.MySQLIteOpenHelper
+import com.grouph.recipelab.model.Research
 import kotlinx.android.synthetic.main.activity_add_research.*
 import kotlinx.android.synthetic.main.content_main.*
 import java.lang.Exception
@@ -81,18 +81,25 @@ class AddResearchActivity : AppCompatActivity() {
                 && btnDate.text.isNotEmpty() && mEditScore.text.isNotEmpty()) {
                 try {
                     db = helper.writableDatabase
-                    insertResearchTable(
-                        mEditRecipeNo.text.toString().toInt(),
-                        btnDate.text.toString().toIntOrNull(),
-                        mEditScore.text.toString().toFloat()
-                    )
-
+                    helper.insert(db, Research(
+                            mEditRecipeNo.text.toString().toInt(),
+                            mEditScore.text.toString().toFloat(),
+                            btnDate.text.toString()
+                    ))
+                    var db2: SQLiteDatabase = helper.readableDatabase
+                    var ar: Cursor = db2.rawQuery("select researchNo from researchTable where recipeNo = " + mEditRecipeNo.text.toString() + " and date = '" + btnDate.text.toString() + "'", null)
+                    var rN: Int = 0
+                    while (ar.moveToNext()) {
+                        ar.apply {
+                            rN = getInt(0)
+                        }
+                    }
                     for (element in data) {
-                        insertElementsTable(1, element[0], element[1].toInt(), element[2])
+                        insertElementsTable(rN, element[0], element[1].toInt(), element[2])
                     }
                     helper.close()
                     finish()
-                } catch (e: Exception) {}
+                }catch (e:Exception){}
             }
             R.id.btnDate -> DatePickerDialog(this@AddResearchActivity, mDateSetListener,
                 cal.get(Calendar.YEAR),
