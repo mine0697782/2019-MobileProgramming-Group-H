@@ -4,4 +4,61 @@
 
 package com.grouph.recipelab.adapter
 
-class ResearchListAdapter
+import android.app.Activity
+import android.content.Intent
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.recyclerview.widget.RecyclerView
+import com.grouph.recipelab.R
+import com.grouph.recipelab.activity.ResearchingListActivity
+import com.grouph.recipelab.helper.MySQLIteOpenHelper
+import com.grouph.recipelab.model.Element
+import com.grouph.recipelab.model.Research
+import kotlinx.android.synthetic.main.activity_researching_list.view.*
+import kotlinx.android.synthetic.main.item_research_elements.view.*
+import kotlinx.android.synthetic.main.item_research_list_card.view.*
+
+class ResearchListAdapter(val data: ArrayList<Research>, val recipeNo: Int, val context: Activity, val helper: MySQLIteOpenHelper)
+    : RecyclerView.Adapter<ResearchListAdapter.ViewHolder>() {
+
+    private val db = helper.readableDatabase
+    private val eleData = arrayListOf<Element>()
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_research_elements, parent, false)
+
+        return ViewHolder(view)
+    }
+
+    override fun getItemCount(): Int {
+        return data.size
+    }
+
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        val item = data[position]
+        holder.apply {
+            bind(item/*, listener*/)
+        }
+    }
+
+    fun getElements() {
+
+    }
+
+    class ViewHolder(v: View) : RecyclerView.ViewHolder(v) {
+        val view = v
+        fun bind(item: Research/*, listener: View.OnClickListener*/) {
+            view.text_research_date.text = item.date
+            view.text_score.text = item.score.toString()
+//            view.text_keyname1 =
+//            view.text_keyname2 =
+//            view.text_keyname3 =
+
+//            view.setOnClickListener(listener)
+//            view.text_research_coffee_name.text = item.recipeName
+//            view.text_num_research.text = item.resNum.toString()
+//            view.text_research_coffee_date.text = item.currentDate
+        }
+    }
+}

@@ -115,7 +115,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 cursor.apply {
                     val data = Recipe(getString(3), getInt(1),
                         getString(6), getString(7), getString(8),
-                        getInt(2))
+                        getInt(2), recipeNo = getInt(0))
                     dataTop.add(data)
                 }
             }
@@ -124,7 +124,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 cursor.apply {
                     val data = Recipe(getString(3), getInt(1),
                         getString(6), getString(7), getString(8),
-                        getInt(2))
+                        getInt(2), recipeNo = getInt(0))
                     dataBottom.add(data)
                 }
             }
