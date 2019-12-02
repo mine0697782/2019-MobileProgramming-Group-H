@@ -26,25 +26,34 @@ class MySQLIteOpenHelper(
 
     // 테스트용 데이터
     val d1 = arrayListOf(
-        Recipe("테스트1", 3, "원두", "물", "시간"),
-        Recipe("테스트2", 3, "원두", "물", "시간"),
-        Recipe("테스트3", 3, "원두", "물", "시간"),
-        Recipe("테스트4", 3, "원두", "물", "시간"),
-        Recipe("테스트5", 3, "원두", "물", "시간", isFinished = true),
-        Recipe("테스트6", 3, "원두", "물", "시간", isFinished = true),
-        Recipe("테스트7", 3, "원두", "물", "시간", isFinished = true),
-        Recipe("테스트8", 3, "원두", "물", "시간", isFinished = true))
+        Recipe("에티오피아 예거치프", 3, "원두", "물", "시간", resNum = 3),
+        Recipe("케냐 AA", 3, "원두", "물", "시간"),
+        Recipe("브라질 산토스", 3, "원두", "물", "시간", isFinished = true),
+        Recipe("인도네시아 블루문", 3, "원두", "물", "시간", isFinished = true))
     val d2 = arrayListOf(Research(1), Research(1), Research(1))
     val d3 = arrayListOf(
+        Element(1, -1, 1, "원두", unit = "g"),
+        Element(1, -1, 2, "물", unit = "ml"),
+        Element(1, -1, 3, "시간", unit = "sec"),
         Element(1, 1, 1, "원두", 10, "g"),
-        Element(1, 1, 2, "물", 10, "g"),
-        Element(1, 1, 3, "시간", 10, "g"),
+        Element(1, 1, 2, "물", 10, "ml"),
+        Element(1, 1, 3, "시간", 10, "sec"),
         Element(1, 2, 1, "원두", 10, "g"),
-        Element(1, 2, 2, "물", 10, "g"),
-        Element(1, 2, 3, "시간", 10, "g"),
+        Element(1, 2, 2, "물", 10, "ml"),
+        Element(1, 2, 3, "시간", 10, "sec"),
         Element(1, 3, 1, "원두", 10, "g"),
-        Element(1, 3, 2, "물", 10, "g"),
-        Element(1, 3, 3, "시간", 10, "g"))
+        Element(1, 3, 2, "물", 10, "ml"),
+        Element(1, 3, 3, "시간", 10, "sec"),
+        Element(2, -1, 1, "원두", unit = "g"),
+        Element(2, -1, 2, "물", unit = "ml"),
+        Element(2, -1, 3, "시간", unit = "sec"),
+        Element(3, -1, 1, "원두", unit = "g"),
+        Element(3, -1, 2, "물", unit = "ml"),
+        Element(3, -1, 3, "시간", unit = "sec"),
+        Element(4, -1, 1, "원두", unit = "g"),
+        Element(4, -1, 2, "물", unit = "ml"),
+        Element(4, -1, 3, "시간", unit = "sec")
+    )
 
     /** 데이터베이스가 존재하지 않으면 데이터베이스 생성을 위해 호출되는 함수 */
     override fun onCreate(db: SQLiteDatabase) {
