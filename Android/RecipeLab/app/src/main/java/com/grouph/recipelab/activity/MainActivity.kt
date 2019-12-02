@@ -21,8 +21,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.navigation.NavigationView
 import com.grouph.recipelab.R
-import com.grouph.recipelab.adapter.ResearchingListAdapter
+import com.grouph.recipelab.adapter.RecipeListAdapter
 import com.grouph.recipelab.helper.MySQLIteOpenHelper
+import com.grouph.recipelab.model.Recipe
 import kotlinx.android.synthetic.main.content_main.*
 import kotlinx.android.synthetic.main.toolbar_main.*
 import me.relex.circleindicator.CircleIndicator2
@@ -37,14 +38,13 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     val dbName = "file.db"
     var dbVersion = 1
 
-    var testData1: ArrayList<String> = arrayListOf("연구중인음식1", "진행중2", "테스트용데이터3")
-    var testData2: ArrayList<String> = arrayListOf(
-        "완료된 레시피1", "완료된 레시피2", "완료됨3", "스크롤테스트1", "스크롤테스트2")
+    val dataTop = arrayListOf<Recipe>()
+    val dataBottom = arrayListOf<Recipe>()
 
     lateinit var rvTop: RecyclerView
     lateinit var rvBottom: RecyclerView
-    lateinit var adapterTop: ResearchingListAdapter
-    lateinit var adapterBottom: ResearchingListAdapter
+    lateinit var adapterTop: RecipeListAdapter
+    lateinit var adapterBottom: RecipeListAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -64,22 +64,19 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         /** 데이터베이스를 사용하기 위한 헬퍼 */
         helper = MySQLIteOpenHelper(this, dbName,null, dbVersion)
-        try {
-            db = helper.readableDatabase
-        } catch (e: SQLiteException) {
-            e.printStackTrace()
-        }
+        getDataFromDB()
 
         val floatingBtn: FloatingActionButton = fab
         floatingBtn.setOnClickListener {
-            adapterTop.data.add("추가된 데이터")
-            adapterTop.notifyDataSetChanged()
+//            adapterTop.data.add(Recipe("추가된 데이터",0, "1","2","3"))
+//            adapterTop.notifyDataSetChanged()
+            startActivityForResult(Intent(this, AddRecipeActivity::class.java), 0)
         }
 
         /** 리사이클러뷰에 데이터를 바인드해주기 위해 필요한 어댑터 생성 */
-        adapterTop = ResearchingListAdapter(testData1, this, R.layout.item_research_list_card)
+        adapterTop = RecipeListAdapter(dataTop, this, R.layout.item_research_list_card)
         adapterTop.notifyDataSetChanged()
-        adapterBottom = ResearchingListAdapter(testData2, this, R.layout.item_research_list)
+        adapterBottom = RecipeListAdapter(dataBottom, this, R.layout.item_research_list)
         adapterBottom.notifyDataSetChanged()
 
         /** 리사이클러뷰에 커스텀 어댑터를 설정하고, 좌우로 움직이도록 설정 */
@@ -107,6 +104,49 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             addItemDecoration(DividerItemDecoration(context , DividerItemDecoration.VERTICAL))
             /** 상위 레이아웃의 스크롤과 중첩되는걸 방지하기 위해 스크롤 비활성화 */
             isNestedScrollingEnabled = false
+        }
+    }
+
+    fun getDataFromDB() {
+        try {
+            db = helper.readableDatabase
+            var cursor = db.rawQuery("select * from recipeTable where isFInished = 0", null)
+            while (cursor.moveToNext()) {
+                cursor.apply {
+                    val data = Recipe(getString(3), getInt(1),
+                        getString(6), getString(7), getString(8),
+                        getInt(2))
+                    dataTop.add(data)
+                }
+            }
+            cursor = db.rawQuery("select * from recipeTable where isFInished = 1", null)
+            while (cursor.moveToNext()) {
+                cursor.apply {
+                    val data = Recipe(getString(3), getInt(1),
+                        getString(6), getString(7), getString(8),
+                        getInt(2))
+                    dataBottom.add(data)
+                }
+            }
+            db.close()
+        } catch (e: SQLiteException) {
+            e.printStackTrace()
+        }
+    }
+
+    fun refreshAdapter() {
+//        Toast.makeText(this, "refresh", Toast.LENGTH_SHORT).show()
+        adapterTop.data.clear()
+        adapterBottom.data.clear()
+        getDataFromDB()
+        adapterTop.notifyDataSetChanged()
+        adapterBottom.notifyDataSetChanged()
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        if (resultCode == RESULT_OK) {
+            Toast.makeText(this,"result Ok", Toast.LENGTH_SHORT).show()
+            refreshAdapter()
         }
     }
 

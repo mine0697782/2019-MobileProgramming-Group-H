@@ -31,21 +31,21 @@
                 android:gravity="center"
                 android:orientation="vertical">
 
-                <TextView
+                <!--<TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="#DDDDDD"
+                    android:background="@color/colorToolbarPrimary"
                     android:paddingStart="20dp"
                     android:paddingTop="10dp"
                     android:paddingBottom="10dp"
                     android:text="연구 진행중 리스트"
-                    android:textSize="20sp" />
+                    android:textSize="20sp" />-->
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:background="#FFaa77">
+                    android:background="@color/colorToolbarPrimary">
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/rv_list_researching"
@@ -55,7 +55,7 @@
                     <me.relex.circleindicator.CircleIndicator2
                         android:id="@+id/indicator_main"
                         android:layout_width="match_parent"
-                        android:layout_height="48dp" />
+                        android:layout_height="40dp" />
 
                 </LinearLayout>
 
@@ -63,7 +63,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
-                    android:background="#DDDDDD"
+                    android:background="@color/colorToolbarPrimaryLight"
                     android:paddingStart="20dp"
                     android:paddingTop="10dp"
                     android:paddingBottom="10dp"
@@ -73,7 +73,7 @@
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rv_list_research_finished"
-                    android:layout_width="match_parent"
+                    android:layout_width="344dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="30dp"
                     android:layout_marginEnd="30dp" />
