@@ -6,6 +6,7 @@
 package com.grouph.recipelab.activity
 
 import android.content.Intent
+import android.content.SharedPreferences
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteException
 import androidx.appcompat.app.AppCompatActivity
@@ -65,6 +66,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         /** 데이터베이스를 사용하기 위한 헬퍼 */
         helper = MySQLIteOpenHelper(this, dbName,null, dbVersion)
         getDataFromDB()
+
+
 
         val floatingBtn: FloatingActionButton = fab
         floatingBtn.setOnClickListener {

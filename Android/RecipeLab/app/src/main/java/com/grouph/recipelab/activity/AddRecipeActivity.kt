@@ -12,26 +12,33 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.grouph.recipelab.R
 import com.grouph.recipelab.adapter.AddElementListAdapter
 import com.grouph.recipelab.helper.MySQLIteOpenHelper
+import com.grouph.recipelab.model.Element
 import com.grouph.recipelab.model.Recipe
 import kotlinx.android.synthetic.main.activity_add_recipe.*
 import kotlinx.android.synthetic.main.activity_test.btn_exit
+import kotlinx.android.synthetic.main.item_element_add.*
+import java.lang.Exception
 
 class AddRecipeActivity : AppCompatActivity() {
 
     private val TAG = "AddRecipeActivity"
 
     lateinit var btnAdd: TextView
+//    lateinit var btnClose: ImageView
 
     lateinit var btnExit: Button
     lateinit var editName: EditText
     private lateinit var rv: RecyclerView
     private lateinit var adapter: AddElementListAdapter
+
+    lateinit var helper: MySQLIteOpenHelper
 
     private val data = arrayListOf<ArrayList<String>>()
 
@@ -47,14 +54,20 @@ class AddRecipeActivity : AppCompatActivity() {
         btnAdd = btn_add_element
         btnAdd.setOnClickListener{
             Log.d(TAG, "btnAdd")
-            adapter.data.add(arrayListOf<String>())
+            adapter.mDataset.add(arrayListOf<String>("", ""))
             adapter.notifyDataSetChanged()
         }
+
+//        btnClose = btn_close
+//        btnClose.setOnClickListener {
+//            Log.d(TAG, "btnClose")
+//            adapter.mDataset.remove()
+//        }
 
         editName = edit_recipe_name
         btnExit = btn_exit
         btnExit.setOnClickListener {
-            val helper = MySQLIteOpenHelper(this, "file.db",null, 1)
+            helper = MySQLIteOpenHelper(this, "file.db",null, 1)
 
             try {
                 val db = helper.writableDatabase
@@ -70,5 +83,16 @@ class AddRecipeActivity : AppCompatActivity() {
         }
 
         //Recipe("추가된 데이터",0, "1","2","3")
+    }
+
+    fun getRecipeCount(): Int {
+        try {
+            val db = helper.readableDatabase
+//            val cursor = db.rawQuery("select count(*) from recipeTable", null)
+            return db.rawQuery("select count(*) from recipeTable", null).count
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+        return 0
     }
 }

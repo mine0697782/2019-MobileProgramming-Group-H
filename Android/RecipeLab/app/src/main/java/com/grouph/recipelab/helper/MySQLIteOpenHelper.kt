@@ -87,8 +87,8 @@ class MySQLIteOpenHelper(
         }
             val sql = "insert into recipeTable (eleNum, resNum, recipeName, " +
                     "isFinished, currentDate, keyName1, keyName2, keyName3) values (" +
-                    eleNum + ", " + resNum + ", '" + recipeName + "', " + fin + ", '" + currentDate +
-                    "', '" + keyName1 + "', '" + keyName2 + "', '" + keyName3 + "')"
+                    eleNum + ", " + resNum + ", '" + recipeName + "', " + fin + ", '" +
+                    currentDate + "', '" + keyName1 + "', '" + keyName2 + "', '" + keyName3 + "')"
             db.execSQL(sql)
         }
     }

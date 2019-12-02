@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.AddRecipeActivity">
+    tools:context=".activity.AddRecipeActivity"
+    android:layout_margin="10dp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -37,6 +38,11 @@
         </LinearLayout>
 
         <LinearLayout
+            android:background="#EAEAEA"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"/>
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
@@ -60,6 +66,11 @@
                 android:background="@color/colorTransparent"
                 android:text="+추가하기" />
         </LinearLayout>
+
+        <LinearLayout
+            android:background="#EAEAEA"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"/>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_list_element_to_add"
