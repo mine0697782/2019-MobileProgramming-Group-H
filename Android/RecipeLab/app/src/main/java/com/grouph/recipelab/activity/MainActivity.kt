@@ -54,7 +54,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         /** 메인액티비티에서 네비게이션 드로워를 사용하기 위해 테마를 NoActionBar로 바꾸고 이를 대체한 커스텀 툴바 설정 */
         /** 타이틀을 설정해주기 위해 임시로 작성한 코드 */
-        myToolbar.title = "MainActivity"
+        myToolbar.title = "RecipeLab"
         setSupportActionBar(myToolbar)
 
         /** 좌측에서 끌어서 사용하는 네비게이션 뷰를 초기화하는 부분 */

@@ -14,6 +14,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.grouph.recipelab.R
@@ -24,6 +25,7 @@ import com.grouph.recipelab.model.Recipe
 import kotlinx.android.synthetic.main.activity_add_recipe.*
 import kotlinx.android.synthetic.main.activity_test.btn_exit
 import kotlinx.android.synthetic.main.item_element_add.*
+import kotlinx.android.synthetic.main.toolbar_main.*
 import java.lang.Exception
 
 class AddRecipeActivity : AppCompatActivity() {
@@ -45,6 +47,14 @@ class AddRecipeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_recipe)
+
+        val myToolbar: Toolbar = toolbar
+
+        myToolbar.title = "레시피 추가"
+        setSupportActionBar(myToolbar)
+
+        val window = window
+        window.statusBarColor = resources.getColor(R.color.colorPrimary)
 
         rv = rv_list_element_to_add
         adapter = AddElementListAdapter(data, this)

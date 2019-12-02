@@ -10,6 +10,8 @@ import android.database.sqlite.SQLiteException
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.Window
+import android.view.WindowManager
 import android.widget.TextView
 import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -56,8 +58,11 @@ class ResearchingListActivity : AppCompatActivity() {
         setContentView(R.layout.activity_researching_list)
         val myToolbar: Toolbar = toolbar
 
-        myToolbar.title = "ResearchingListActicity"
+        myToolbar.title = "연구 목록"
         setSupportActionBar(myToolbar)
+
+        val window = window
+        window.statusBarColor = resources.getColor(R.color.colorPrimary)
 
         val floatingBtn: FloatingActionButton = fab
         floatingBtn.setOnClickListener {
