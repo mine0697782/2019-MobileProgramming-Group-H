@@ -10,8 +10,6 @@ import android.database.sqlite.SQLiteException
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.view.Window
-import android.view.WindowManager
 import android.widget.TextView
 import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -69,7 +67,12 @@ class ResearchingListActivity : AppCompatActivity() {
         floatingBtn.setOnClickListener {
             //            adapterTop.data.add(Recipe("추가된 데이터",0, "1","2","3"))
 //            adapterTop.notifyDataSetChanged()
-            startActivityForResult(Intent(this, AddResearchActivity::class.java), 0)
+            val outIntent = Intent(this, AddResearchActivity2::class.java)
+            outIntent.putExtra("recipeNo", intent.getIntExtra("recipeNo", 0))
+            outIntent.putExtra("recipeName", intent.getStringExtra("recipeName"))
+            outIntent.putExtra("date", intent.getStringExtra("date"))
+            outIntent.putExtra("resNum", intent.getIntExtra("resNum", 0))
+            startActivityForResult(outIntent, 0)
         }
 
         Log.d(TAG, "시작")

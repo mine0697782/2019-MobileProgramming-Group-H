@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
-        <activity android:name=".activity.TestActivity"></activity>
+        <activity android:name=".activity.AddResearchActivity2"></activity>
+        <activity android:name=".activity.TestActivity" />
         <activity
             android:name=".activity.ResearchResultActivity"
             android:label="@string/label_research_result" />
