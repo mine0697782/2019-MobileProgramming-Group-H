@@ -12,7 +12,6 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.EditText
-import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -23,8 +22,7 @@ import com.grouph.recipelab.helper.MySQLIteOpenHelper
 import com.grouph.recipelab.model.Element
 import com.grouph.recipelab.model.Recipe
 import kotlinx.android.synthetic.main.activity_add_recipe.*
-import kotlinx.android.synthetic.main.activity_test.btn_exit
-import kotlinx.android.synthetic.main.item_element_add.*
+import kotlinx.android.synthetic.main.activity_test.btn_register
 import kotlinx.android.synthetic.main.toolbar_main.*
 import java.lang.Exception
 
@@ -35,7 +33,7 @@ class AddRecipeActivity : AppCompatActivity() {
     lateinit var btnAdd: TextView
 //    lateinit var btnClose: ImageView
 
-    lateinit var btnExit: Button
+    lateinit var btnRegister: Button
     lateinit var editName: EditText
     private lateinit var rv: RecyclerView
     private lateinit var adapter: AddElementListAdapter
@@ -75,13 +73,25 @@ class AddRecipeActivity : AppCompatActivity() {
 //        }
 
         editName = edit_recipe_name
-        btnExit = btn_exit
-        btnExit.setOnClickListener {
+        btnRegister = btn_register
+        btnRegister.setOnClickListener {
             helper = MySQLIteOpenHelper(this, "file.db",null, 1)
 
             try {
                 val db = helper.writableDatabase
-                helper.insert(db, Recipe(editName.text.toString()))
+                helper.insert(db, Recipe(
+                    editName.text.toString(),adapter.itemCount, adapter.mDataset[0][0],
+                    adapter.mDataset[1][0], adapter.mDataset[2][0]))
+//                helper.insert(db, )
+                val cursor = db.rawQuery("select count(*) from recipeTable", null)
+                cursor.moveToFirst()
+                val recipeNo = cursor.getInt(0)
+                Log.d(TAG, "count : "+recipeNo)
+                var idx = 0
+                for (arr in adapter.mDataset) {
+                    helper.insert(db, Element(recipeNo, -1, idx+1, adapter.mDataset[idx][0], 0, adapter.mDataset[idx][1]))
+                    idx += 1
+                }
                 db.close()
             } catch (e: SQLiteException) {
                 e.printStackTrace()

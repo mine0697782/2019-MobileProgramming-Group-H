@@ -10,7 +10,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import com.grouph.recipelab.R
-import kotlinx.android.synthetic.main.activity_researching_list.*
 import kotlinx.android.synthetic.main.activity_test.*
 
 class TestActivity : AppCompatActivity() {
@@ -20,7 +19,7 @@ class TestActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_test)
-        btnExit = btn_exit
+        btnExit = btn_register
         btnExit.setOnClickListener {
             val intent = Intent(this,MainActivity::class.java)
             setResult(RESULT_OK, intent)
