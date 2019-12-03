@@ -28,13 +28,14 @@
             android:background="#FAFAFA" />-->
 
         <TextView
-            android:id="@+id/edit_element_name"
-            android:layout_width="100dp"
+            android:id="@+id/text_element_name"
+            android:layout_width="60dp"
             android:layout_height="wrap_content"
             android:background="@color/colorTransparent"
             android:focusable="true"
             android:focusableInTouchMode="true"
             android:singleLine="true"
+            android:textAlignment="center"
             android:text="요소명" />
 
         <EditText
@@ -44,7 +45,7 @@
             android:background="@color/colorTransparent"
             android:focusable="true"
             android:focusableInTouchMode="true"
-            android:hint="수치를 입력하세요"
+            android:hint="입력"
             android:singleLine="true" />
 
         <ImageView
@@ -54,20 +55,21 @@
 
         <TextView
             android:id="@+id/text_element_unit"
-            android:layout_width="100dp"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:background="@color/colorTransparent"
             android:focusable="true"
             android:focusableInTouchMode="true"
             android:singleLine="true"
             android:text="(단위)" />
 
-        <ImageView
+        <!--<ImageView
             android:id="@+id/btn_close"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_close_black_24dp"
-            android:tint="#7D7D7D" />
+            android:tint="#7D7D7D" />-->
 
     </LinearLayout>
 </LinearLayout>

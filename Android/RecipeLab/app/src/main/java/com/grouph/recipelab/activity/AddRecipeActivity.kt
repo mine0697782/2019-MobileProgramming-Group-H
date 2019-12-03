@@ -1,6 +1,5 @@
 /**
- *  작성자 : 정민재
- *  @author jmj
+ *  작성자 : 이윤서
  */
 
 package com.grouph.recipelab.activity

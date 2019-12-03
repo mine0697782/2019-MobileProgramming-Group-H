@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -99,24 +100,20 @@ class ResearchingListActivity : AppCompatActivity() {
 
         helper = MySQLIteOpenHelper(this, "file.db",null, 1)
 
-//        Log.d(TAG, "곧 try")
-        try {
-//            Log.d(TAG, "try 시작")
-            db = helper.readableDatabase
-            var resCursor = db.rawQuery("select * from researchTable where recipeNo = "+recipeNo, null)
-            while (resCursor.moveToNext()) {
-//                Log.d(TAG, "while 진입")
-                resCursor.apply {
-                    val data = Research(recipeNo, getFloat(3), getString(2).slice(IntRange(5, 9)), getInt(0))
-                    myData.add(data)
-                }
-            }
-            db.close()
-//            Log.d(TAG, "try 끝")
-        } catch (e: SQLiteException) {
-            e.printStackTrace()
-        }
-//        Log.d(TAG, "try 탈출")
+        getDataFromDB()
+//        try {
+//            db = helper.readableDatabase
+//            var resCursor = db.rawQuery("select * from researchTable where recipeNo = "+recipeNo, null)
+//            while (resCursor.moveToNext()) {
+//                resCursor.apply {
+//                    val data = Research(recipeNo, getFloat(3), getString(2).slice(IntRange(5, 9)), getInt(0))
+//                    myData.add(data)
+//                }
+//            }
+//            db.close()
+//        } catch (e: SQLiteException) {
+//            e.printStackTrace()
+//        }
 
         rv = rv_list_researches
         adapter = ResearchListAdapter(myData, recipeNo, eleNum,this, helper)
@@ -126,6 +123,37 @@ class ResearchingListActivity : AppCompatActivity() {
             layoutManager = LinearLayoutManager(context ,LinearLayoutManager.VERTICAL, false)
             addItemDecoration(DividerItemDecoration(context , DividerItemDecoration.VERTICAL))
             isNestedScrollingEnabled = false
+        }
+    }
+
+    fun getDataFromDB() {
+        try {
+            db = helper.readableDatabase
+            var resCursor = db.rawQuery("select * from researchTable where recipeNo = "+recipeNo, null)
+            while (resCursor.moveToNext()) {
+                resCursor.apply {
+                    val data = Research(recipeNo, getFloat(3), getString(2).slice(IntRange(5, 9)), getInt(0))
+                    myData.add(data)
+                }
+            }
+            db.close()
+        } catch (e: SQLiteException) {
+            e.printStackTrace()
+        }
+    }
+
+    fun refreshAdapter() {
+        adapter.data.clear()
+        adapter.data.addAll(myData)
+        adapter.setting()
+        getDataFromDB()
+        adapter.notifyDataSetChanged()
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        if (resultCode == RESULT_OK) {
+            Toast.makeText(this,"result Ok", Toast.LENGTH_SHORT).show()
+            refreshAdapter()
         }
     }
 }

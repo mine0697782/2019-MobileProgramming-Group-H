@@ -34,10 +34,16 @@ class ResearchListAdapter(
     private val db = helper.readableDatabase
     private val units = arrayListOf<String>()
 
+    fun setting() {
+        units.addAll(getUnits(recipeNo))
+
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.item_research_elements, parent, false)
-        units.addAll(getUnits(recipeNo))
+//        units.addAll(getUnits(recipeNo))
+        setting()
         Log.d(TAG, units.toString())
 
         return ViewHolder(view)
@@ -87,7 +93,7 @@ class ResearchListAdapter(
         try {
             val cursor =
                 db.rawQuery(
-                    "select value from elementsTable where researchNo="+researchNo+" and recipeNo=" + recipeNo,
+                    "select value from elementsTable where researchNo=" + researchNo + " and recipeNo=" + recipeNo,
                     null
                 )
             while (cursor.moveToNext()) {
@@ -102,7 +108,7 @@ class ResearchListAdapter(
     class ViewHolder(v: View) : RecyclerView.ViewHolder(v) {
         val view = v
         fun bind(item: Research, values: ArrayList<String>, units: ArrayList<String>) {
-            var data = arrayListOf<String>()
+//            var data = arrayListOf<String>()
 
             view.text_research_date.text = item.date
             view.text_score.text = item.score.toString()
