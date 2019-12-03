@@ -40,6 +40,7 @@ class RecipeListAdapter(val data: ArrayList<Recipe>, val context: Activity, val 
             intent.putExtra("keyName1", item.keyName1)
             intent.putExtra("keyName2", item.keyName2)
             intent.putExtra("keyName3", item.keyName3)
+            intent.putExtra("eleNum", item.eleNum)
             context.startActivityForResult(intent, 0)
         }
         holder.apply {

@@ -45,6 +45,7 @@ class ResearchingListActivity : AppCompatActivity() {
     lateinit var keyName1: TextView
     lateinit var keyName2: TextView
     lateinit var keyName3: TextView
+    var eleNum: Int = 0
 
     lateinit var rv: RecyclerView
     lateinit var adapter: ResearchListAdapter
@@ -85,6 +86,7 @@ class ResearchingListActivity : AppCompatActivity() {
         recipeNo = intent.getIntExtra("recipeNo", 0)
         Log.d(TAG, "recipeNo = "+recipeNo)
 
+        eleNum = intent.getIntExtra("eleNum", 0)
         textName.text = intent.getStringExtra("recipeName")
         textResNum.text = intent.getIntExtra("resNum", 0).toString()+"개"
         textDate.text = intent.getStringExtra("date")
@@ -94,27 +96,27 @@ class ResearchingListActivity : AppCompatActivity() {
 
         helper = MySQLIteOpenHelper(this, "file.db",null, 1)
 
-        Log.d(TAG, "곧 try")
+//        Log.d(TAG, "곧 try")
         try {
-            Log.d(TAG, "try 시작")
+//            Log.d(TAG, "try 시작")
             db = helper.readableDatabase
             var resCursor = db.rawQuery("select * from researchTable where recipeNo = "+recipeNo, null)
             while (resCursor.moveToNext()) {
-                Log.d(TAG, "while 진입")
+//                Log.d(TAG, "while 진입")
                 resCursor.apply {
                     val data = Research(recipeNo, getFloat(3), getString(2).slice(IntRange(5, 9)), getInt(0))
                     myData.add(data)
                 }
             }
             db.close()
-            Log.d(TAG, "try 끝")
+//            Log.d(TAG, "try 끝")
         } catch (e: SQLiteException) {
             e.printStackTrace()
         }
-        Log.d(TAG, "try 탈출")
+//        Log.d(TAG, "try 탈출")
 
         rv = rv_list_researches
-        adapter = ResearchListAdapter(myData, recipeNo,this, helper)
+        adapter = ResearchListAdapter(myData, recipeNo, eleNum,this, helper)
         adapter.notifyDataSetChanged()
         rv.adapter = adapter
         rv.apply {

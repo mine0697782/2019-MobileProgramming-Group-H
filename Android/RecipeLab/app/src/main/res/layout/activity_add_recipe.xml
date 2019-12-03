@@ -88,7 +88,7 @@
             android:id="@+id/btn_exit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="exit" />
+            android:text="등록" />
 
     </LinearLayout>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
